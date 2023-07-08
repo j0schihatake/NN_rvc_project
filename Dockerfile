@@ -46,6 +46,7 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 
 # RUN service ssh start
+EXPOSE 7865
 
 # Create user:
 RUN groupadd --gid 1020 acr-group
@@ -76,7 +77,8 @@ ADD ./models/hubert_base.pt /home/acr-user/acr/
 ENV HOME /home/acr-user/acr
 WORKDIR ${HOME}
 
-CMD python app.py
+#CMD python app.py
+CMD python infer-web.py
 
 # Перед тем как запускать нужно подложить модели в необходимое место:
 # Качаем release и копируем необходимые файлы:
@@ -88,4 +90,4 @@ CMD python app.py
 # Docker:
 # docker build -t acr .
 # docker container attach acr
-# docker run -dit --name acr -p 8000:8000 -v D:/Develop/NeuronNetwork/llama_cpp/llama_cpp_java/models/pretrained:/home/acr-user/acr/pretrained -v D:/Develop/NeuronNetwork/llama_cpp/llama_cpp_java/models/pretrained_v2:/home/acr-user/acr/pretrained_v2 -v D:/Develop/NeuronNetwork/llama_cpp/llama_cpp_java/models/uvr5_weights:/home/acr-user/acr/uvr5_weights --gpus all --restart unless-stopped acr:latest
+# docker run -dit --name acr -p 7865:7865 -v D:/Develop/NeuronNetwork/llama_cpp/llama_cpp_java/models/pretrained:/home/acr-user/acr/pretrained -v D:/Develop/NeuronNetwork/llama_cpp/llama_cpp_java/models/pretrained_v2:/home/acr-user/acr/pretrained_v2 -v D:/Develop/NeuronNetwork/llama_cpp/llama_cpp_java/models/uvr5_weights:/home/acr-user/acr/uvr5_weights --gpus all --restart unless-stopped acr:latest
