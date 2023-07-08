@@ -89,5 +89,6 @@ CMD python infer-web.py
 
 # Docker:
 # docker build -t acr .
-# docker container attach acr
 # docker run -dit --name acr -p 7865:7865 -v D:/Develop/NeuronNetwork/llama_cpp/llama_cpp_java/models/pretrained:/home/acr-user/acr/pretrained -v D:/Develop/NeuronNetwork/llama_cpp/llama_cpp_java/models/pretrained_v2:/home/acr-user/acr/pretrained_v2 -v D:/Develop/NeuronNetwork/llama_cpp/llama_cpp_java/models/uvr5_weights:/home/acr-user/acr/uvr5_weights --gpus all --restart unless-stopped acr:latest
+
+# debug: docker container attach acr
